@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
-from sqlalchemy.ext.associationproxy import association_proxy
+
 from sqlalchemy_serializer import SerializerMixin
 
 metadata = MetaData(
@@ -57,7 +57,7 @@ class RestaurantPizza(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer, nullable=False)
 
-    # add relationships
+    # add missing restaurant_id column
     restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"))
     restaurant = db.relationship("Restaurant", back_populates="restaurant_pizzas")
 
